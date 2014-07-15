@@ -201,7 +201,7 @@ void CGameClientDlg::DrawField( CDC* pDC )
 		pDC->LineTo( CPoint( ( ROW_LINE * TILE_SIZE ) + START_XPOS  , START_YPOS + ( i * TILE_SIZE ) ) );
 	}
 
-	for( i = 0 ; i < ROW_LINE + 1 ; i++ )
+	for( int i = 0 ; i < ROW_LINE + 1 ; i++ )
 	{
 		pDC->MoveTo( CPoint( START_XPOS + ( i * TILE_SIZE ) , START_YPOS ) );
 		pDC->LineTo( CPoint( START_XPOS + ( i * TILE_SIZE ), ( (COL_LINE + 1)* TILE_SIZE ) + START_XPOS ) );
@@ -217,13 +217,13 @@ void CGameClientDlg::DrawField( CDC* pDC )
 	pen.CreatePenIndirect( &logpen );
 	
 	CPen* oldPen = pDC->SelectObject( &pen );
-	for( i = 0 ; i < (COL_LINE / (CELLCOL_LINE )) + 1; i++ )
+	for(int i = 0 ; i < (COL_LINE / (CELLCOL_LINE )) + 1; i++ )
 	{
 		pDC->MoveTo( CPoint( START_XPOS , START_YPOS + ( i * TILE_SIZE )  + ( (i*( CELLCOL_LINE - 1 )) * TILE_SIZE ) ) );
 		pDC->LineTo( CPoint( ( ROW_LINE * TILE_SIZE ) + START_XPOS  , START_YPOS + ( i * TILE_SIZE ) + ( (i*( CELLCOL_LINE - 1 )) * TILE_SIZE ) )) ;
 	}
 
-	for( i = 0 ; i < (ROW_LINE / (CELLROW_LINE )) + 1 ; i++ )
+	for( int i = 0 ; i < (ROW_LINE / (CELLROW_LINE )) + 1 ; i++ )
 	{
 		pDC->MoveTo( CPoint( START_XPOS + ( i * TILE_SIZE ) + ( (i*( CELLROW_LINE - 1 )) * TILE_SIZE ), START_YPOS ) );
 		pDC->LineTo( CPoint( START_XPOS + ( i * TILE_SIZE )+ ( (i*( CELLROW_LINE - 1 )) * TILE_SIZE ), ( (COL_LINE + 1) * TILE_SIZE ) + START_XPOS ) );
@@ -242,12 +242,12 @@ void CGameClientDlg::DrawField( CDC* pDC )
 	int nStartX = nPosX * TILE_SIZE;
 	int nStartY = nPosY * TILE_SIZE;
 		
-	for( i = 0 ; i < COL_LINE ; i++ )
+	for( int i = 0 ; i < COL_LINE ; i++ )
 	{
 		pDC->FrameRect( &CRect( nStartX + START_XPOS , START_YPOS + ( i * TILE_SIZE ) , 
 			nStartX + TILE_SIZE + START_XPOS, START_YPOS + ( i * TILE_SIZE ) + TILE_SIZE )  , NULL ) ;
 	}
-	for( i = 0 ; i < ROW_LINE ; i++ )
+	for( int i = 0 ; i < ROW_LINE ; i++ )
 	{
 		pDC->FrameRect( &CRect( ( i * TILE_SIZE )  + START_XPOS , START_YPOS + nStartY , 
 			 ( i * TILE_SIZE )  + TILE_SIZE + START_XPOS, START_YPOS + nStartY + TILE_SIZE )  , NULL ) ;
@@ -256,7 +256,7 @@ void CGameClientDlg::DrawField( CDC* pDC )
 	if( nPosX >= nPosY )
 	{
 		nCnt = COL_LINE - ( nPosX - nPosY );
-		for( i = 0 ; i < nCnt ; i++ )
+		for( int i = 0 ; i < nCnt ; i++ )
 		{
 			//왼쪽위 부터 오른쪽 아래 대각선까지 네모를 그리기
 			pDC->FrameRect( &CRect( ( nStartX - nStartY )+ ( i * TILE_SIZE )  + START_XPOS , START_YPOS + ( i * TILE_SIZE ) , 
@@ -266,7 +266,7 @@ void CGameClientDlg::DrawField( CDC* pDC )
 	else if( nPosX < nPosY )
 	{
 		nCnt = ROW_LINE - ( nPosY - nPosX );
-		for( i = 0 ; i < nCnt ; i++ )
+		for( int i = 0 ; i < nCnt ; i++ )
 		{
 			//왼쪽위 부터 오른쪽 아래 대각선까지 네모를 그리기
 			pDC->FrameRect( &CRect( ( i * TILE_SIZE )  + START_XPOS , ( nStartY - nStartX )+ START_YPOS + ( i * TILE_SIZE ) , 
@@ -277,7 +277,7 @@ void CGameClientDlg::DrawField( CDC* pDC )
 	if( ( nPosX + nPosY ) <= COL_LINE )
 	{
 		nCnt = nPosX+nPosY + 1;
-		for( i = 0 ; i < nCnt ; i++ )
+		for( int i = 0 ; i < nCnt ; i++ )
 		{
 			//오른쪽 위부터 왼쪽 아래 대각선까지 네모를 그리기
 			pDC->FrameRect( &CRect( ( nStartY + nStartX ) - ( i * TILE_SIZE )  + START_XPOS ,  START_YPOS + ( i * TILE_SIZE ) , 
@@ -287,7 +287,7 @@ void CGameClientDlg::DrawField( CDC* pDC )
 	else if( ( nPosX + nPosY ) > COL_LINE )
 	{
 		nCnt = ( COL_LINE * 2 ) - ( nPosX + nPosY ) - 1;
-		for( i = 0 ; i < nCnt ; i++ )
+		for( int i = 0 ; i < nCnt ; i++ )
 		{
 			//오른쪽 위부터 왼쪽 아래 대각선까지 네모를 그리기
 			pDC->FrameRect( 
